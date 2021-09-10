@@ -602,9 +602,9 @@
     #define DEFAULT_Ki_LIST {   1.08,   1.08 }
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
-    #define DEFAULT_Kp  18.21
-    #define DEFAULT_Ki   0.91
-    #define DEFAULT_Kd  91.18
+    #define DEFAULT_Kp  10.10
+    #define DEFAULT_Ki   0.49
+    #define DEFAULT_Kd  52.00
   #endif
 #endif // PIDTEMP
 
@@ -1173,7 +1173,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -26.7, -23.7, -3.050 }
+#define NOZZLE_TO_PROBE_OFFSET { -26.7, -23.7, -2.950 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
