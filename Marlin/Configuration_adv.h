@@ -2155,9 +2155,9 @@
 #if BOTH(SDSUPPORT, DIRECT_STEPPING)
   #define BLOCK_BUFFER_SIZE  8
 #elif ENABLED(SDSUPPORT)
-  #define BLOCK_BUFFER_SIZE 32
+  #define BLOCK_BUFFER_SIZE 64
 #else
-  #define BLOCK_BUFFER_SIZE 16
+  #define BLOCK_BUFFER_SIZE 64
 #endif
 
 // @section serial
@@ -2761,7 +2761,10 @@
   //#define Z_CS_PIN          -1
   //#define X2_CS_PIN         -1
   //#define Y2_CS_PIN         -1
-  //#define Z2_CS_PIN         -1
+  #define Z2_CS_PIN         P1_01
+  #define Z2_STEP_PIN       P1_15
+  #define Z2_DIR_PIN        P1_14
+  #define Z2_ENABLE_PIN     P1_16
   //#define Z3_CS_PIN         -1
   //#define Z4_CS_PIN         -1
   //#define I_CS_PIN          -1
