@@ -56,7 +56,8 @@ typedef enum : int8_t {
   H_BOARD = HID_BOARD,
   H_CHAMBER = HID_CHAMBER,
   H_BED = HID_BED,
-  H_E0 = HID_E0, H_E1, H_E2, H_E3, H_E4, H_E5, H_E6, H_E7
+  H_E0 = HID_E0, H_E1, H_E2, H_E3, H_E4, H_E5, H_E6, H_E7,
+  H_NONE = -128
 } heater_id_t;
 
 // PID storage
@@ -993,7 +994,12 @@ class Temperature {
       static int16_t read_max_tc(TERN_(HAS_MULTI_MAX_TC, const uint8_t hindex=0));
     #endif
 
-    static void update_autofans();
+    #if HAS_AUTO_FAN
+      #if ENABLED(POWER_OFF_WAIT_FOR_COOLDOWN)
+        static bool autofans_on;
+      #endif
+      static void update_autofans();
+    #endif
 
     #if HAS_HOTEND
       static float get_pid_output_hotend(const uint8_t e);
