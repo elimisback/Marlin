@@ -2982,8 +2982,14 @@
   //#define X_CS_PIN          -1
   //#define Y_CS_PIN          -1
   //#define Z_CS_PIN          -1
-  //#define X2_CS_PIN         -1
-  //#define Y2_CS_PIN         -1
+  #define X2_STEP_PIN         PD15
+  #define X2_DIR_PIN          PD14
+  #define X2_ENABLE_PIN       PC7
+  #define X2_CS_PIN           PC6
+  #define Y2_STEP_PIN         PD11
+  #define Y2_DIR_PIN          PD10
+  #define Y2_ENABLE_PIN       PD13
+  #define Y2_CS_PIN           PD12
   //#define Z2_CS_PIN         -1
   //#define Z3_CS_PIN         -1
   //#define Z4_CS_PIN         -1
@@ -3007,7 +3013,7 @@
    * The default SW SPI pins are defined the respective pins files,
    * but you can override or define them here.
    */
-  //#define TMC_USE_SW_SPI
+  #define TMC_USE_SW_SPI
   //#define TMC_SW_MOSI       -1
   //#define TMC_SW_MISO       -1
   //#define TMC_SW_SCK        -1
@@ -3085,7 +3091,7 @@
    * Define your own with:
    * { <off_time[1..15]>, <hysteresis_end[-3..12]>, hysteresis_start[1..8] }
    */
-  #define CHOPPER_TIMING CHOPPER_DEFAULT_12V        // All axes (override below)
+  #define CHOPPER_TIMING CHOPPER_DEFAULT_24V        // All axes (override below)
   //#define CHOPPER_TIMING_X  CHOPPER_TIMING        // For X Axes (override below)
   //#define CHOPPER_TIMING_X2 CHOPPER_TIMING_X
   //#define CHOPPER_TIMING_Y  CHOPPER_TIMING        // For Y Axes (override below)
