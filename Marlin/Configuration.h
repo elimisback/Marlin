@@ -163,7 +163,7 @@
  *
  * :[3, 4, 5, 6, 7, 8, 9]
  */
-#define NUM_AXES 3
+//#define NUM_AXES 3
 
 /**
  * Additional Axis Settings
