@@ -1530,7 +1530,7 @@
   //#define MIN_SOFTWARE_ENDSTOP_K
   //#define MIN_SOFTWARE_ENDSTOP_U
   //#define MIN_SOFTWARE_ENDSTOP_V
-  #//define MIN_SOFTWARE_ENDSTOP_W
+  //#define MIN_SOFTWARE_ENDSTOP_W
 #endif
 
 // Max software endstops constrain movement within maximum coordinate bounds
