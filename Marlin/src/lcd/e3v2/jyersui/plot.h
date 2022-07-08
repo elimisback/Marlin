@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2021 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2022 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -21,14 +21,21 @@
  */
 #pragma once
 
-/********************************************************************************
- * @file     lcd/e3v2/jyersui/dwin_lcd.h
- * @brief    DWIN screen control functions
- ********************************************************************************/
+/**
+ * DWIN Single var plot
+ * Author: Miguel A. Risco-Castillo
+ * Version: 1.0
+ * Date: 2022/01/30
+ *
+ * Modded for JYERSUI by LCH-77
+ */
 
-#include "../common/dwin_api.h"
+#include "dwinui.h"
 
-// Draw the degree (°) symbol
-// Color: color
-//  x/y: Upper-left coordinate of the first pixel
-void DWIN_Draw_DegreeSymbol(uint16_t Color, uint16_t x, uint16_t y);
+class PlotClass {
+public:
+  void Draw(frame_rect_t frame, float max, float ref = 0);
+  void Update(float value);
+};
+
+extern PlotClass Plot;
