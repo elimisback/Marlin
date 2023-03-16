@@ -1268,6 +1268,12 @@
 #endif
 
 /**
+ * Multi-stepping sends steps in bursts to reduce MCU usage for high step-rates.
+ * This allows higher feedrates than the MCU could otherwise support.
+ */
+#define MULTISTEPPING_LIMIT   16  //: [1, 2, 4, 8, 16, 32, 64, 128]
+
+/**
  * Adaptive Step Smoothing increases the resolution of multi-axis moves, particularly at step frequencies
  * below 1kHz (for AVR) or 10kHz (for ARM), where aliasing between axes in multi-axis moves causes audible
  * vibration and surface artifacts. The algorithm adapts to provide the best possible step smoothing at the
@@ -2146,13 +2152,10 @@
  * Points to probe for all 3-point Leveling procedures.
  * Override if the automatically selected points are inadequate.
  */
-#if EITHER(AUTO_BED_LEVELING_3POINT, AUTO_BED_LEVELING_UBL)
-  #define PROBE_PT_1_X 45
-  #define PROBE_PT_1_Y 45
-  #define PROBE_PT_2_X 267
-  #define PROBE_PT_2_Y 45
-  #define PROBE_PT_3_X 156
-  #define PROBE_PT_3_Y 261
+#if NEEDS_THREE_PROBE_POINTS
+  #define PROBE_PT_1 {  45, 45 }   // (mm) { x, y }
+  #define PROBE_PT_2 {  267,  45 }
+  #define PROBE_PT_3 { 156,  261 }
 #endif
 
 /**
