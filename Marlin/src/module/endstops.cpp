@@ -311,7 +311,7 @@ void Endstops::event_handler() {
       SERIAL_ECHOPGM(" " STRINGIFY(A) ":", planner.triggered_position_mm(_AXIS(A))); _SET_STOP_CHAR(A,C); }while(0)
 
     #define _ENDSTOP_HIT_TEST(A,C) \
-      if (TERN0(HAS_##A##_MIN, TEST(hit_state, A##_MIN)) || TERN0(HAS_##A##_MAX, TEST(hit_state, A##_MAX))) \
+      if (TERN0(USE_##A##_MIN, TEST(hit_state, ES_ENUM(A,MIN))) || TERN0(USE_##A##_MAX, TEST(hit_state, ES_ENUM(A,MAX)))) \
         _ENDSTOP_HIT_ECHO(A,C)
 
     #define ENDSTOP_HIT_TEST_X() _ENDSTOP_HIT_TEST(X,'X')
@@ -792,7 +792,7 @@ void Endstops::update() {
   }while(0)
 
   // Core Sensorless Homing needs to test an Extra Pin
-  #define CORE_DIAG(QQ,A,MM) (CORE_IS_##QQ && A##_SENSORLESS && !A##_SPI_SENSORLESS && HAS_##A##_##MM)
+  #define CORE_DIAG(QQ,A,MM) (CORE_IS_##QQ && A##_SENSORLESS && !A##_SPI_SENSORLESS && USE_##A##_##MM)
   #define PROCESS_CORE_ENDSTOP(A1,M1,A2,M2) do { \
     if (TEST_ENDSTOP(_ENDSTOP(A1,M1))) { \
       _ENDSTOP_HIT(A2,M2); \
@@ -869,7 +869,7 @@ void Endstops::update() {
   #if HAS_X_AXIS
     if (stepper.axis_is_moving(X_AXIS)) {
       if (stepper.motor_direction(X_AXIS_HEAD)) { // -direction
-        #if HAS_X_MIN || (X_SPI_SENSORLESS && X_HOME_TO_MIN)
+        #if USE_X_MIN || (X_SPI_SENSORLESS && X_HOME_TO_MIN)
           PROCESS_ENDSTOP_X(MIN);
           #if   CORE_DIAG(XY, Y, MIN)
             PROCESS_CORE_ENDSTOP(Y,MIN,X,MIN);
@@ -883,7 +883,7 @@ void Endstops::update() {
         #endif
       }
       else { // +direction
-        #if HAS_X_MAX || (X_SPI_SENSORLESS && X_HOME_TO_MAX)
+        #if USE_X_MAX || (X_SPI_SENSORLESS && X_HOME_TO_MAX)
           PROCESS_ENDSTOP_X(MAX);
           #if   CORE_DIAG(XY, Y, MIN)
             PROCESS_CORE_ENDSTOP(Y,MIN,X,MAX);
