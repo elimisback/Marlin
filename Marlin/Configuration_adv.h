@@ -3262,7 +3262,7 @@
   #define Y_HYBRID_THRESHOLD     100
   #define Y2_HYBRID_THRESHOLD    100
   #define Z_HYBRID_THRESHOLD       20
-  #define Z2_HYBRID_THRESHOLD      3
+  #define Z2_HYBRID_THRESHOLD      20
   #define Z3_HYBRID_THRESHOLD      3
   #define Z4_HYBRID_THRESHOLD      3
   #define I_HYBRID_THRESHOLD       3  // [linear=mm/s, rotational=°/s]
@@ -4414,3 +4414,19 @@
 
 // Report uncleaned reset reason from register r2 instead of MCUSR. Supported by Optiboot on AVR.
 //#define OPTIBOOT_RESET_REASON
+
+/** Extra pin definitions 
+*/
+#define Z2_STEP_PIN                         PB7
+#define Z2_DIR_PIN                          PB6
+#define Z2_ENABLE_PIN                       PB4
+#ifndef Z2_CS_PIN
+  #define Z2_CS_PIN                         PB5
+#endif
+
+#if HAS_TMC_UART
+
+  #define Z2_SERIAL_TX_PIN                  PB5   // E1_CS_PIN
+  #define Z2_SERIAL_RX_PIN      E1_SERIAL_TX_PIN
+
+#endif // HAS_TMC_UART
