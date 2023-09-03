@@ -664,7 +664,8 @@
  */
 #define REDUNDANT_PART_COOLING_FAN 1  // Index of the first fan to synchronize with Fan 0
 #ifdef REDUNDANT_PART_COOLING_FAN
-  #define NUM_REDUNDANT_FANS 1        // Number of sequential fans to synchronize with Fan 0
+  #define NUM_REDUNDANT_FANS 1
+          // Number of sequential fans to synchronize with Fan 0
 #endif
 
 // @section extruder
