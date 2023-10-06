@@ -4428,6 +4428,6 @@
 #if HAS_TMC_UART
 
   #define Z2_SERIAL_TX_PIN                  PB5   // E1_CS_PIN
-  #define Z2_SERIAL_RX_PIN      E1_SERIAL_TX_PIN
+  #define Z2_SERIAL_RX_PIN      Z2_SERIAL_TX_PIN
 
 #endif // HAS_TMC_UART
