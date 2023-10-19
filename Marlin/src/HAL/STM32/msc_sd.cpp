@@ -71,7 +71,7 @@ public:
     bool done = false;
     for (uint16_t rcount = SD_MULTIBLOCK_RETRY_CNT; !done && rcount--;) {
       uint8_t *cBuf = pBuf;
-      sd2card->writeStart(blkAddr,blkLen);
+      sd2card->writeStart(blkAddr, blkLen);
       bool okay = true;                   // Assume success
       for (uint32_t i = blkLen; i--;) {
         hal.watchdog_refresh();
