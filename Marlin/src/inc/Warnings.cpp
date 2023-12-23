@@ -33,6 +33,13 @@
 
 #if ENABLED(MARLIN_DEV_MODE)
   #warning "WARNING! Disable MARLIN_DEV_MODE for the final build!"
+  #ifdef __LONG_MAX__
+    #if __LONG_MAX__ > __INT_MAX__
+      #warning "The 'long' type is larger than the 'int' type on this platform."
+    #else
+      #warning "The 'long' type is the same as the 'int' type on this platform."
+    #endif
+  #endif
 #endif
 
 #if ENABLED(LA_DEBUG)
@@ -707,7 +714,7 @@
 /**
  * Maple environment
  */
-#ifdef __STM32F1__
+#if defined(__STM32F1__) && DISABLED(NO_MAPLE_WARNING)
   #warning "Maple build environments are deprecated. Please use a non-Maple build environment. Report issues to the Marlin Firmware project."
 #endif
 
@@ -778,10 +785,24 @@
 #endif
 
 /**
- * ProUI Boot Screen Duration
+ * Voxelab N32 bootloader
  */
-#if ENABLED(DWIN_LCD_PROUI) && BOOTSCREEN_TIMEOUT > 2000
-  #warning "For ProUI the original BOOTSCREEN_TIMEOUT of 1100 is recommended."
+#ifdef SDCARD_FLASH_LIMIT_256K
+  #warning "This board has 512K but the bootloader can only flash firmware.bin <= 256K. ICSP required for full 512K capacity."
+#endif
+
+/**
+ * ProUI Extras
+ */
+#if ENABLED(DWIN_LCD_PROUI)
+  #if BOOTSCREEN_TIMEOUT > 2000
+    #warning "For ProUI the original BOOTSCREEN_TIMEOUT of 1100 is recommended."
+  #endif
+  #if HAS_PID_HEATING && NONE(PID_AUTOTUNE_MENU, PID_EDIT_MENU)
+    #warning "For ProUI PID_AUTOTUNE_MENU and PID_EDIT_MENU is recommended for PID tuning."
+  #elif ENABLED(MPCTEMP) && NONE(MPC_EDIT_MENU, MPC_AUTOTUNE_MENU)
+    #warning "For ProUI MPC_EDIT_MENU and MPC_AUTOTUNE_MENU is recommended for MPC tuning."
+  #endif
 #endif
 
 /**
