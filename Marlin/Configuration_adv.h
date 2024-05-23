@@ -1028,7 +1028,7 @@
    * If not defined, probe limits will be used.
    * Override with 'M422 S<index> X<pos> Y<pos>'.
    */
-  #define Z_STEPPER_ALIGN_XY { {  35, 153 }, { 265,  153 } }
+  #define Z_STEPPER_ALIGN_XY { {  31, 153 }, { 269,  153 } }
 
   /**
    * Orientation for the automatically-calculated probe positions.
@@ -1520,7 +1520,7 @@
       #define XATC_START_Z 0.0
       #define XATC_MAX_POINTS 5             // Number of points to probe in the wizard
       #define XATC_Y_POSITION Y_CENTER      // (mm) Y position to probe
-      #define XATC_Z_OFFSETS { 0.085, 0.01, -0.015, -0.065, -0.015 }    // Z offsets for X axis sample points
+      #define XATC_Z_OFFSETS { 0.105, -0.02, -0.045, -0.02, -0.02 }    // Z offsets for X axis sample points
     #endif
 
     // Show Deploy / Stow Probe options in the Motion menu.
