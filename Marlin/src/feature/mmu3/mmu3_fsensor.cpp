@@ -28,8 +28,8 @@
 
 #if HAS_PRUSA_MMU3
 
-#include "../../feature/runout.h"
-#include "mmu2_fsensor.h"
+#include "../runout.h"
+#include "mmu3_fsensor.h"
 
 namespace MMU3 {
 
